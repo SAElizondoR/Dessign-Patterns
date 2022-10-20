@@ -17,9 +17,7 @@
 
 package boulangerie;
 
-import boulangerie.gateaux.Ingredients;
-import boulangerie.gateaux.Gateau;
-import boulangerie.gateaux.IngredientsDecorator;
+import boulangerie.gateaux.Aliment;
 
 /**
  *
@@ -27,9 +25,8 @@ import boulangerie.gateaux.IngredientsDecorator;
  */
 public class Patissier {
     
-    public void preparerGateau(Gateau gateau, Ingredients ingredients) {
-        Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
-        if (decoratedGateau.preparer() == 0)
+    public void preparer(Aliment gateau) {
+        if (gateau.preparer() == 0)
             System.out.println("C'est fait!");
         else
             System.out.println("Erreur lors de la preparation.");

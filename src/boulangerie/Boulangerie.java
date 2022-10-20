@@ -17,7 +17,7 @@
 
 package boulangerie;
 
-import boulangerie.gateaux.Ingredients;
+import boulangerie.gateaux.Ingredient;
 import boulangerie.gateaux.ChouxALaCreme;
 import boulangerie.gateaux.Tarte;
 import java.io.BufferedReader;
@@ -41,7 +41,6 @@ public class Boulangerie {
         BufferedReader buff = new BufferedReader(
                 new InputStreamReader(System.in));
         Patissier patissier = new Patissier();
-        Ingredients ingredients = new Ingredients();
         int choix = choisirOption(buff, "Choux à la crème", "Tarte");
         switch (choix) {
             case 1:
@@ -55,19 +54,19 @@ public class Boulangerie {
                         typeCreme = "Chocolat";
                         break;
                 }
+                ChouxALaCreme chouxALaCreme = new ChouxALaCreme(typeCreme);
                 choix = choisirOption(buff, "Avec chantilly", "Sans chantilly");
                 if (choix == 1)
-                    ingredients.add("Chantilly");
+                    chouxALaCreme.add(new Ingredient("Chantilly"));
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add("Noisettes");
+                    chouxALaCreme.add(new Ingredient("Noisettes"));
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add("Amandes grillées");
+                    chouxALaCreme.add(new Ingredient("Amandes grillées"));
                 
-                patissier.preparerGateau(new ChouxALaCreme(typeCreme),
-                        ingredients);
+                patissier.preparer(chouxALaCreme);
                 break;
             case 2:
                 String typeTarte = "";
@@ -80,20 +79,20 @@ public class Boulangerie {
                         typeTarte = "Abricots";
                         break;
                 }
+                Tarte tarte = new Tarte(typeTarte);
                 choix = choisirOption(buff, "Avec meringue sur les fruits",
                     "Sans meringue sur les fruits");
                 if (choix == 1)
-                    ingredients.add("Meringue");
+                    tarte.add(new Ingredient("Meringue"));
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add("Noisettes");
+                    tarte.add(new Ingredient("Noisettes"));
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add("Amandes grillées");
+                    tarte.add(new Ingredient("Amandes grillées"));
                 
-                patissier.preparerGateau(new Tarte(typeTarte),
-                        ingredients);
+                patissier.preparer(tarte);
                 break;
         }
         

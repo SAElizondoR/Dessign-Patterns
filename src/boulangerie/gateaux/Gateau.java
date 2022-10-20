@@ -16,10 +16,30 @@
  */
 package boulangerie.gateaux;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author sergio
  */
-public interface Gateau {
-    public int preparer();
+abstract class Gateau implements Aliment {
+    
+    protected final ArrayList<Aliment> ingredients = new ArrayList<>();
+    
+    public void add(Aliment aliment) {
+        ingredients.add(aliment);
+    }
+    
+    @Override
+    public int preparer() {
+        System.out.println();
+        System.out.println();
+        System.out.println("PREPARATION");
+        
+        for (Aliment aliment : ingredients)
+            aliment.preparer();
+        
+        return 0;
+    }
+    
 }

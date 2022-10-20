@@ -20,11 +20,17 @@ package boulangerie.gateaux;
  *
  * @author sergio
  */
-abstract class GateauDecorator implements Gateau {
-    protected Gateau decoratedGateau;
-    
-    public GateauDecorator(Gateau decoratedGateau) {
-        this.decoratedGateau = decoratedGateau;
+public class Ingredient implements Aliment {
+    private final String nom;
+
+    public Ingredient(String nom) {
+        this.nom = nom;
+    }
+
+    @Override
+    public int preparer() {
+        System.out.println(nom + " est prêt...");
+        return 0;
     }
     
 }
