@@ -17,10 +17,22 @@
 
 package boulangerie;
 
+import boulangerie.gateaux.Ingredients;
+import boulangerie.gateaux.Gateau;
+import boulangerie.gateaux.IngredientsDecorator;
+
 /**
  *
  * @author selizondorod
  */
 public class Patissier {
+    
+    public void preparerGateau(Gateau gateau, Ingredients ingredients) {
+        Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
+        if (decoratedGateau.preparer() == 0)
+            System.out.println("C'est fait!");
+        else
+            System.out.println("Erreur lors de la preparation.");
+    }
     
 }

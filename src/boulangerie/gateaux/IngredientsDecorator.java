@@ -16,18 +16,15 @@
  */
 package boulangerie.gateaux;
 
-import boulangerie.Ingredient;
-import java.util.ArrayList;
-
 /**
  *
  * @author sergio
  */
 public class IngredientsDecorator extends GateauDecorator {
-    private final ArrayList<Ingredient> ingredients;
+    private final Ingredients ingredients;
     
     public IngredientsDecorator(Gateau decoratedGateau,
-            ArrayList<Ingredient> ingredients) {
+            Ingredients ingredients) {
         super(decoratedGateau);
         this.ingredients = ingredients;
     }
@@ -35,8 +32,8 @@ public class IngredientsDecorator extends GateauDecorator {
     @Override
     public int preparer() {
         decoratedGateau.preparer();
-        for (Ingredient i: ingredients)
-            System.out.println("Ajouter " + i.toString() + "...");
+        for (String ingredient: ingredients)
+            System.out.println("Ajouter " + ingredient + "...");
         return 0;
     }
     

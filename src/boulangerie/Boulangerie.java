@@ -17,14 +17,12 @@
 
 package boulangerie;
 
+import boulangerie.gateaux.Ingredients;
 import boulangerie.gateaux.ChouxALaCreme;
-import boulangerie.gateaux.Gateau;
-import boulangerie.gateaux.IngredientsDecorator;
 import boulangerie.gateaux.Tarte;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,9 +40,8 @@ public class Boulangerie {
         
         BufferedReader buff = new BufferedReader(
                 new InputStreamReader(System.in));
-        
-        Gateau gateau = null;
-        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        Patissier patissier = new Patissier();
+        Ingredients ingredients = new Ingredients();
         int choix = choisirOption(buff, "Choux à la crème", "Tarte");
         switch (choix) {
             case 1:
@@ -58,17 +55,19 @@ public class Boulangerie {
                         typeCreme = "Chocolat";
                         break;
                 }
-                gateau = new ChouxALaCreme(typeCreme);
                 choix = choisirOption(buff, "Avec chantilly", "Sans chantilly");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Chantilly"));
+                    ingredients.add("Chantilly");
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Noisettes"));
+                    ingredients.add("Noisettes");
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Amandes grillées"));
+                    ingredients.add("Amandes grillées");
+                
+                patissier.preparerGateau(new ChouxALaCreme(typeCreme),
+                        ingredients);
                 break;
             case 2:
                 String typeTarte = "";
@@ -81,26 +80,23 @@ public class Boulangerie {
                         typeTarte = "Abricots";
                         break;
                 }
-                gateau= new Tarte(typeTarte);
                 choix = choisirOption(buff, "Avec meringue sur les fruits",
                     "Sans meringue sur les fruits");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Meringue"));
+                    ingredients.add("Meringue");
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Noisettes"));
+                    ingredients.add("Noisettes");
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add(new Ingredient("Amandes grillées"));
+                    ingredients.add("Amandes grillées");
+                
+                patissier.preparerGateau(new Tarte(typeTarte),
+                        ingredients);
                 break;
         }
-        Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
         
-        if (decoratedGateau.preparer() == 0)
-            System.out.println("C'est fait!");
-        else
-            System.out.println("Erreur lors de la preparation.");
         try {
             buff.close();
         } catch (IOException ex) {

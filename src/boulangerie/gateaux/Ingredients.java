@@ -14,22 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package boulangerie;
+package boulangerie.gateaux;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
-public class Ingredient {
-    String nom;
-    
-    public Ingredient(String nom) {
-        this.nom = nom;
-    }
-    
-    @Override
-    public String toString() {
-        return nom;
+public class Ingredients extends ArrayList<String> {
+
+    public Ingredients() {
+        
     }
     
 }
