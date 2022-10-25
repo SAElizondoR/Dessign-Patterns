@@ -17,9 +17,9 @@
 
 package boulangerie;
 
-import boulangerie.gateaux.Ingredients;
+import ingredients.Ingredients;
 import boulangerie.gateaux.Gateau;
-import boulangerie.gateaux.IngredientsDecorator;
+import ingredients.IngredientsDecorator;
 
 /**
  *

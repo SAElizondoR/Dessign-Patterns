@@ -14,27 +14,18 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package boulangerie.gateaux;
+package ingredients;
+
+import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
-public class IngredientsDecorator extends GateauDecorator {
-    private final Ingredients ingredients;
-    
-    public IngredientsDecorator(Gateau decoratedGateau,
-            Ingredients ingredients) {
-        super(decoratedGateau);
-        this.ingredients = ingredients;
-    }
+public class Ingredients extends ArrayList<String> {
 
-    @Override
-    public int preparer() {
-        decoratedGateau.preparer();
-        for (String ingredient: ingredients)
-            System.out.println("Ajouter " + ingredient + "...");
-        return 0;
+    public Ingredients() {
+        
     }
     
 }

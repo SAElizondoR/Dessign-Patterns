@@ -17,7 +17,7 @@
 
 package boulangerie;
 
-import boulangerie.gateaux.Ingredients;
+import ingredients.Ingredients;
 import boulangerie.gateaux.ChouxALaCreme;
 import boulangerie.gateaux.Tarte;
 import java.io.BufferedReader;
