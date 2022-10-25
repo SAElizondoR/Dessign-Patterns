@@ -17,8 +17,9 @@
 
 package boulangerie;
 
-import ingredients.Ingredients;
 import boulangerie.gateaux.Gateau;
+import boulangerie.recettes.Recette;
+import ingredients.Ingredients;
 import ingredients.IngredientsDecorator;
 
 /**
@@ -27,12 +28,28 @@ import ingredients.IngredientsDecorator;
  */
 public class Patissier {
     
-    public void preparerGateau(Gateau gateau, Ingredients ingredients) {
-        Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
-        if (decoratedGateau.preparer() == 0)
-            System.out.println("C'est fait!");
-        else
-            System.out.println("Erreur lors de la preparation.");
+    private Recette recette;
+    
+    public void setRecette(Recette recette) {
+        this.recette = recette;
+    }
+    
+    public Gateau getGateau() {
+        return recette.getGateau();
+    }
+    
+    public void preparerGateau(Ingredients ingredients) {
+        recette.createNewGateau(new IngredientsDecorator(getGateau(),
+                ingredients));
+        recette.buildFarine();
+        recette.buildBeurre();
+        recette.buildRemplissage();
+        
+        for (String ingredient: getGateau().getIngredients()) {
+            
+        }
+        
+        System.out.println("C'est fait!");
     }
     
 }

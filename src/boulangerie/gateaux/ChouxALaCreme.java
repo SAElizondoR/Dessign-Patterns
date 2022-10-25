@@ -22,18 +22,18 @@ package boulangerie.gateaux;
  * @author selizondorod
  */
 public class ChouxALaCreme extends Gateau {
-    private final String typeCreme;
     
     public ChouxALaCreme(String typeCreme) {
-        this.typeCreme = typeCreme;
+        super.setFarine("Choux");
+        super.setBeurre("Laitier");
+        super.setRemplissage(typeCreme);
     }
 
     @Override
     public int preparer() {
-        super.preparer();
-        System.out.println("Ajouter la crème " + typeCreme + "...");
-        System.out.println("Mélanger les ingrédients...");
-        System.out.println("Cuire...");
-        return 0;
+        System.out.println("Préparer la crème (" +
+                super.getRemplissage() + ")...");
+        
+        return super.preparer();
     }
 }

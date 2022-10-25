@@ -17,9 +17,11 @@
 
 package boulangerie;
 
-import ingredients.Ingredients;
 import boulangerie.gateaux.ChouxALaCreme;
 import boulangerie.gateaux.Tarte;
+import boulangerie.recettes.ChouxALaCremeRecette;
+import boulangerie.recettes.TarteRecette;
+import ingredients.Ingredients;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -65,9 +67,9 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add("Amandes grillées");
-                
-                patissier.preparerGateau(new ChouxALaCreme(typeCreme),
-                        ingredients);
+                patissier.setRecette(new ChouxALaCremeRecette(typeCreme));
+                patissier.preparerGateau(ingredients);
+                patissier.getGateau();
                 break;
             case 2:
                 String typeTarte = "";
@@ -91,9 +93,8 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add("Amandes grillées");
-                
-                patissier.preparerGateau(new Tarte(typeTarte),
-                        ingredients);
+                patissier.setRecette(new TarteRecette(typeTarte));
+                patissier.preparerGateau(ingredients);
                 break;
         }
         

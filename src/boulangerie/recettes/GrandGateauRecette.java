@@ -15,23 +15,12 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package boulangerie.gateaux;
+package boulangerie.recettes;
 
 /**
  *
  * @author selizondorod
  */
-public class Tarte extends Gateau {
+public class GrandGateauRecette {
     
-    public Tarte(String type) {
-        super.setFarine("Blé");
-        super.setBeurre("Margarine");
-        super.setRemplissage(type);
-    }
-    
-    @Override
-    public int preparer() {
-        System.out.println("Préparer les " + super.getRemplissage() + "...");
-        return super.preparer();
-    }
 }

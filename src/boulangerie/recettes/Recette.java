@@ -15,23 +15,27 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package boulangerie.gateaux;
+package boulangerie.recettes;
+
+import ingredients.IngredientsDecorator;
 
 /**
  *
  * @author selizondorod
  */
-public class Tarte extends Gateau {
+public abstract class Recette {
+    protected IngredientsDecorator gateau;
     
-    public Tarte(String type) {
-        super.setFarine("Blé");
-        super.setBeurre("Margarine");
-        super.setRemplissage(type);
+    public IngredientsDecorator getGateau() {
+        return gateau;
     }
     
-    @Override
-    public int preparer() {
-        System.out.println("Préparer les " + super.getRemplissage() + "...");
-        return super.preparer();
+    public void createNewGateau(IngredientsDecorator gateau) {
+        this.gateau = gateau;
+        System.out.println("PREPARATION");
     }
+    
+    public abstract void buildFarine();
+    public abstract void buildBeurre();
+    public abstract void buildRemplissage();
 }

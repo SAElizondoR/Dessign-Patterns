@@ -24,7 +24,7 @@ import boulangerie.gateaux.GateauDecorator;
  * @author sergio
  */
 public class IngredientsDecorator extends GateauDecorator {
-    private final Ingredients ingredients;
+    protected final Ingredients ingredients;
     
     public IngredientsDecorator(Gateau decoratedGateau,
             Ingredients ingredients) {
@@ -35,9 +35,13 @@ public class IngredientsDecorator extends GateauDecorator {
     @Override
     public int preparer() {
         decoratedGateau.preparer();
-        for (String ingredient: ingredients)
+        for (String ingredient: getIngredients())
             System.out.println("Ajouter " + ingredient + "...");
         return 0;
+    }
+
+    public Ingredients getIngredients() {
+        return ingredients;
     }
     
 }

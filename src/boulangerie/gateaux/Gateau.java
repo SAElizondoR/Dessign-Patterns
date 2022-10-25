@@ -20,11 +20,50 @@ package boulangerie.gateaux;
  *
  * @author sergio
  */
-public abstract class Gateau {
+public class Gateau {
+    
+    private String typeFarine;
+    private String typeBeurre;
+    private String typeRemplissage;
+    
+    /* public Gateau(String typeFarine, String typeBeurre,
+            String typeRemplissage) {
+        this.typeFarine = typeFarine;
+        this.typeBeurre = typeBeurre;
+        this.typeRemplissage = typeRemplissage;
+    } */
+    
+    public void setFarine(String typeFarine) {
+        this.typeFarine = typeFarine;
+    }
+    
+    public void setBeurre(String typeBeurre) {
+        this.typeBeurre = typeBeurre;
+    }
+    
+    public void setRemplissage(String typeRemplissage) {
+        this.typeRemplissage = typeRemplissage;
+    }
+    
+    public String getFarine() {
+        return typeFarine;
+    }
+    
+    public String getBeurre() {
+        return typeBeurre;
+    }
+    
+    public String getRemplissage() {
+        return typeRemplissage;
+    }
+    
     public int preparer() {
-        System.out.println();
-        System.out.println();
         System.out.println("PREPARATION");
+        System.out.println("Mélanger la farine (" + typeFarine +
+                ") avec la beurre (" + typeBeurre + ")...");
+        System.out.println("Mettre du remplissage (" + typeRemplissage
+                + ")...");
+        System.out.println("Cuire...");
         
         return 0;
     }
