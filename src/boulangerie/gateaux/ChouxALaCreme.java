@@ -21,7 +21,7 @@ package boulangerie.gateaux;
  *
  * @author selizondorod
  */
-public class ChouxALaCreme implements Gateau {
+public class ChouxALaCreme extends Gateau {
     private final String typeCreme;
     
     public ChouxALaCreme(String typeCreme) {
@@ -30,9 +30,7 @@ public class ChouxALaCreme implements Gateau {
 
     @Override
     public int preparer() {
-        System.out.println();
-        System.out.println();
-        System.out.println("PREPARATION");
+        super.preparer();
         System.out.println("Ajouter la crème " + typeCreme + "...");
         System.out.println("Mélanger les ingrédients...");
         System.out.println("Cuire...");

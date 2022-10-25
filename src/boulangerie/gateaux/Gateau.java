@@ -20,6 +20,12 @@ package boulangerie.gateaux;
  *
  * @author sergio
  */
-public interface Gateau {
-    public int preparer();
+public abstract class Gateau {
+    public int preparer() {
+        System.out.println();
+        System.out.println();
+        System.out.println("PREPARATION");
+        
+        return 0;
+    }
 }

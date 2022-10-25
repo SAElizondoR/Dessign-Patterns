@@ -21,7 +21,7 @@ package boulangerie.gateaux;
  *
  * @author selizondorod
  */
-public class Tarte implements Gateau {
+public class Tarte extends Gateau {
     private final String type;
     
     public Tarte(String type) {
@@ -30,9 +30,7 @@ public class Tarte implements Gateau {
     
     @Override
     public int preparer() {
-        System.out.println();
-        System.out.println();
-        System.out.println("PREPARATION");
+        super.preparer();
         System.out.println("Ajouter les " + type + "...");
         System.out.println("Préparer la pâte");
         System.out.println("Cuire...");
