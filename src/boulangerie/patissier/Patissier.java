@@ -15,27 +15,38 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package boulangerie.recettes;
+package boulangerie.patissier;
 
-import ingredients.IngredientsDecorator;
+import boulangerie.gateaux.Gateau;
+import boulangerie.builders.GateauBuilder;
 
 /**
  *
  * @author selizondorod
  */
-public abstract class Recette {
-    protected IngredientsDecorator gateau;
+public class Patissier {
     
-    public IngredientsDecorator getGateau() {
-        return gateau;
+    private GateauBuilder gateauBuilder;
+    
+    public void setGateauBuilder(GateauBuilder gateauBuilder) {
+        this.gateauBuilder = gateauBuilder;
     }
     
-    public void createNewGateau(IngredientsDecorator gateau) {
-        this.gateau = gateau;
-        System.out.println("PREPARATION");
+    public Gateau getGateau() {
+        return gateauBuilder.getGateau();
     }
     
-    public abstract void buildFarine();
-    public abstract void buildBeurre();
-    public abstract void buildRemplissage();
+    public void preparerGateau() {
+        System.out.println("");
+        System.out.println("PRÉPARATION");
+        System.out.println("");
+        gateauBuilder.createNewGateau();
+        gateauBuilder.buildPate();
+        gateauBuilder.remplir();
+        gateauBuilder.cuire();
+        gateauBuilder.decorer();
+        
+        System.out.println("C'est fait!");
+    }
+    
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 selizondorod
+ * Copyright (C) 2022 sergio
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,24 +14,22 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
-package boulangerie.gateaux;
+package boulangerie.ingredients;
 
 /**
  *
- * @author selizondorod
+ * @author sergio
  */
-public class Tarte extends Gateau {
+public class Ingredient {
+    private final String nom;
     
-    public Tarte(String type) {
-        super.setFarine("Blé");
-        super.setBeurre("Margarine");
-        super.setRemplissage(type);
+    public Ingredient(String nom) {
+        this.nom = nom;
     }
     
     @Override
-    public int preparer() {
-        System.out.println("Préparer les " + super.getRemplissage() + "...");
-        return super.preparer();
+    public String toString() {
+        return nom;
     }
+    
 }

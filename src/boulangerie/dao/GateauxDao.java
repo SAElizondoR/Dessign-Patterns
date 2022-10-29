@@ -14,34 +14,39 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package ingredients;
+package boulangerie.dao;
 
 import boulangerie.gateaux.Gateau;
-import boulangerie.gateaux.GateauDecorator;
+import boulangerie.ingredients.Ingredient;
+import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
-public class IngredientsDecorator extends GateauDecorator {
-    protected final Ingredients ingredients;
+public class GateauxDao {
+    ArrayList<Gateau> gateaux;
     
-    public IngredientsDecorator(Gateau decoratedGateau,
-            Ingredients ingredients) {
-        super(decoratedGateau);
-        this.ingredients = ingredients;
-    }
-
-    @Override
-    public int preparer() {
-        decoratedGateau.preparer();
-        for (String ingredient: getIngredients())
-            System.out.println("Ajouter " + ingredient + "...");
-        return 0;
-    }
-
-    public Ingredients getIngredients() {
-        return ingredients;
+    public GateauxDao() {
+        gateaux = new ArrayList<>();
+        // gateaux.add(new Gateau("Choux à la crème"));
+        // gateaux.add(new Gateau("Tarte"));
     }
     
+    public boolean getGateau(String nom) {
+        return false;
+        // return gateaux.contains(new Gateau(nom));
+       }
+
+    public void save(Gateau obj) {
+        gateaux.add(obj);
+    }
+
+    public void update(Gateau obj, ArrayList<Ingredient> ingredient) {
+        
+    }
+
+    public void delete(Gateau obj) {
+        gateaux.remove(obj);
+    }
 }

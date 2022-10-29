@@ -15,16 +15,19 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package boulangerie;
+package boulangerie.boulangerie;
 
-import boulangerie.gateaux.ChouxALaCreme;
-import boulangerie.gateaux.Tarte;
-import boulangerie.recettes.ChouxALaCremeRecette;
-import boulangerie.recettes.TarteRecette;
-import ingredients.Ingredients;
+import boulangerie.builders.ChouxALaCremeBuilder;
+import boulangerie.builders.GateauBuilder;
+import boulangerie.builders.PanDeMuertoBuilder;
+import boulangerie.builders.TarteBuilder;
+import boulangerie.dao.GateauxDao;
+import boulangerie.ingredients.Ingredient;
+import boulangerie.patissier.Patissier;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,61 +45,91 @@ public class Boulangerie {
         
         BufferedReader buff = new BufferedReader(
                 new InputStreamReader(System.in));
+        ArrayList<Ingredient> ingredients = new ArrayList<>();
+        GateauxDao gateauxDAO = new GateauxDao();
+        GateauBuilder gateauBuilder = null;
         Patissier patissier = new Patissier();
-        Ingredients ingredients = new Ingredients();
-        int choix = choisirOption(buff, "Choux à la crème", "Tarte");
+        int choix = choisirOption(buff, "Choux à la crème", "Tarte",
+                "Pan de muerto");
         switch (choix) {
             case 1:
                 String typeCreme = "";
                 choix = choisirOption(buff, "Crème vanille", "Crème chocolat");
                 switch (choix) {
                     case 1:
-                        typeCreme = "Vanille";
+                        typeCreme = "vanille";
                         break;
                     case 2:
-                        typeCreme = "Chocolat";
+                        typeCreme = "chocolat";
                         break;
                 }
                 choix = choisirOption(buff, "Avec chantilly", "Sans chantilly");
                 if (choix == 1)
-                    ingredients.add("Chantilly");
+                    ingredients.add(new Ingredient("chantilly"));
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add("Noisettes");
+                    ingredients.add(new Ingredient("noisettes"));
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add("Amandes grillées");
-                patissier.setRecette(new ChouxALaCremeRecette(typeCreme));
-                patissier.preparerGateau(ingredients);
-                patissier.getGateau();
+                    ingredients.add(new Ingredient("amandes grillées"));
+                gateauBuilder = new ChouxALaCremeBuilder(
+                        typeCreme, ingredients);
                 break;
             case 2:
                 String typeTarte = "";
                 choix = choisirOption(buff, "Aux pommes", "Aux abricots");
                 switch (choix) {
                     case 1:
-                        typeTarte = "Pommes";
+                        typeTarte = "pommes";
                         break;
                     case 2:
-                        typeTarte = "Abricots";
+                        typeTarte = "abricots";
                         break;
                 }
                 choix = choisirOption(buff, "Avec meringue sur les fruits",
                     "Sans meringue sur les fruits");
                 if (choix == 1)
-                    ingredients.add("Meringue");
+                    ingredients.add(new Ingredient("meringue"));
                 choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
                 if (choix == 1)
-                    ingredients.add("Noisettes");
+                    ingredients.add(new Ingredient("noisettes"));
                 choix = choisirOption(buff, "Avec amandes grillées",
                     "Sans amandes grillées");
                 if (choix == 1)
-                    ingredients.add("Amandes grillées");
-                patissier.setRecette(new TarteRecette(typeTarte));
-                patissier.preparerGateau(ingredients);
+                    ingredients.add(new Ingredient("amandes grillées"));
+                gateauBuilder = new TarteBuilder(typeTarte, ingredients);
+                break;
+            case 3:
+                String typeRemplissage = "";
+                choix = choisirOption(buff, "Chocolat", "Massepain");
+                switch (choix) {
+                    case 1:
+                        typeRemplissage = "chocolat";
+                        break;
+                    case 2:
+                        typeRemplissage = "massepain";
+                        break;
+                }
+                choix = choisirOption(buff, "Avec canelle", "Sans canelle");
+                if (choix == 1)
+                    ingredients.add(new Ingredient("canelle"));
+                choix = choisirOption(buff, "Avec pain de vesou",
+                        "Sans pain de vesou");
+                if (choix == 1)
+                    ingredients.add(new Ingredient("pain de vesou"));
+                choix = choisirOption(buff, "Avec sucre",
+                    "Sans sucre");
+                if (choix == 1)
+                    ingredients.add(new Ingredient("sucre"));
+                gateauBuilder = new PanDeMuertoBuilder(
+                        typeRemplissage, ingredients);
                 break;
         }
+        
+        patissier.setGateauBuilder(gateauBuilder);
+        patissier.preparerGateau();
+        patissier.getGateau();
         
         try {
             buff.close();

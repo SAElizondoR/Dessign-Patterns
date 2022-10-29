@@ -16,55 +16,41 @@
  */
 package boulangerie.gateaux;
 
+import boulangerie.builders.GateauBuilder;
+import boulangerie.patissier.Patissier;
+
 /**
  *
  * @author sergio
  */
 public class Gateau {
-    
-    private String typeFarine;
-    private String typeBeurre;
+    private final String nom;
+    private String typePate;
     private String typeRemplissage;
+    private boolean isCuit;
+    private GateauBuilder gateauBuilder;
+    public Patissier patissier;
     
-    /* public Gateau(String typeFarine, String typeBeurre,
-            String typeRemplissage) {
-        this.typeFarine = typeFarine;
-        this.typeBeurre = typeBeurre;
-        this.typeRemplissage = typeRemplissage;
-    } */
-    
-    public void setFarine(String typeFarine) {
-        this.typeFarine = typeFarine;
+    public Gateau() {
+        this.nom = "";
     }
     
-    public void setBeurre(String typeBeurre) {
-        this.typeBeurre = typeBeurre;
+    public Gateau(String nom) {
+        this.nom = nom;
+    }
+    
+    public void setPate(String typePate) {
+        this.typePate = typePate;
     }
     
     public void setRemplissage(String typeRemplissage) {
         this.typeRemplissage = typeRemplissage;
     }
     
-    public String getFarine() {
-        return typeFarine;
+    public void cuire() {
+        this.isCuit = true;
     }
     
-    public String getBeurre() {
-        return typeBeurre;
-    }
+
     
-    public String getRemplissage() {
-        return typeRemplissage;
-    }
-    
-    public int preparer() {
-        System.out.println("PREPARATION");
-        System.out.println("Mélanger la farine (" + typeFarine +
-                ") avec la beurre (" + typeBeurre + ")...");
-        System.out.println("Mettre du remplissage (" + typeRemplissage
-                + ")...");
-        System.out.println("Cuire...");
-        
-        return 0;
-    }
 }
