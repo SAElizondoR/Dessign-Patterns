@@ -27,13 +27,18 @@ import java.util.ArrayList;
 public class IngredientsDecorator extends GateauDecorator {
     protected final ArrayList<Ingredient> ingredients;
     
-    public IngredientsDecorator(Gateau decoratedGateau) {
+    public IngredientsDecorator(Gateau decoratedGateau, ArrayList<Ingredient> ingredients) {
         super(decoratedGateau);
-        ingredients = new ArrayList();
+        this.ingredients = ingredients;
     }
     
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
+    }
+
+    @Override
+    public Gateau clone() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 }

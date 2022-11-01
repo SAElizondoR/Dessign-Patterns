@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 selizondorod
+ * Copyright (C) 2022 sergio
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,25 +14,37 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+package boulangerie.gateaux;
 
-package boulangerie.builders;
-
-import boulangerie.gateaux.Gateau;
+import boulangerie.ingredients.Ingredient;
+import java.util.ArrayList;
 
 /**
  *
- * @author selizondorod
+ * @author sergio
  */
-abstract public class GateauBuilder {
-    protected Gateau gateau;
+public class Tarte extends Gateau {
     
-    public Gateau getGateau() {
-        return gateau;
+    String type;
+    ArrayList<Ingredient> ingredients;
+    
+    public Tarte() {
+        
     }
     
-    public abstract void createNewGateau();
-    public abstract void buildPate();
-    public abstract void remplir();
-    public abstract void cuire();
-    public abstract void decorer();
+    public Tarte(String type, ArrayList<Ingredient> ingredients) {
+        this.type = type;
+        this.ingredients = ingredients;
+    }
+    
+    public void setType(String type) {
+        this.type = type;
+    }
+    
+    
+    @Override
+    public Gateau clone() {
+        return new Tarte();
+    }
+    
 }

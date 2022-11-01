@@ -3,10 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gateaux/GateauDecorator.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gateaux/Gateau.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/factory/Factory.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/boulangerie/Boulangerie.java</file>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/ingredients/IngredientsDecorator.java</file>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/builders/PanDeMuertoBuilder.java</file>
         </group>
     </open-files>
 </project-private>

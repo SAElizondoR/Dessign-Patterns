@@ -17,13 +17,10 @@
 
 package boulangerie.boulangerie;
 
-import boulangerie.builders.ChouxALaCremeBuilder;
-import boulangerie.builders.GateauBuilder;
-import boulangerie.builders.PanDeMuertoBuilder;
-import boulangerie.builders.TarteBuilder;
 import boulangerie.dao.GateauxDao;
+import boulangerie.factory.Factory;
 import boulangerie.ingredients.Ingredient;
-import boulangerie.patissier.Patissier;
+import boulangerie.ingredients.IngredientsDecorator;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -46,9 +43,8 @@ public class Boulangerie {
         BufferedReader buff = new BufferedReader(
                 new InputStreamReader(System.in));
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        GateauxDao gateauxDAO = new GateauxDao();
-        GateauBuilder gateauBuilder = null;
-        Patissier patissier = new Patissier();
+        GateauxDao gateauxDao = new GateauxDao();
+        IngredientsDecorator gateau = null;
         int choix = choisirOption(buff, "Choux à la crème", "Tarte",
                 "Pan de muerto");
         switch (choix) {
@@ -73,8 +69,20 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new ChouxALaCremeBuilder(
-                        typeCreme, ingredients);
+                gateau = Factory.getPrototype("Choux à la crème", ingredients);
+                System.out.println("Mélanger la farine avec la beurre jusqu'à "
+                        + "ce qu'il forme une pâte...");
+                gateau.setPate("choux");
+                System.out.println("Ajouter la garniture à la crème " +
+                        typeCreme + "...");
+                gateau.setRemplissage(typeCreme);
+                System.out.println("Cuire 12 minutes...");
+                gateau.cuire();
+                for (Ingredient ingredient: new ArrayList<>(ingredients)) {
+                    System.out.println("Ajouter " + ingredient +
+                    " en décoration...");
+                    gateau.addIngredient(ingredient);
+                }
                 break;
             case 2:
                 String typeTarte = "";
@@ -98,7 +106,21 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new TarteBuilder(typeTarte, ingredients);
+                gateau = Factory.getPrototype("Tarte",
+                        ingredients);
+                System.out.println("Mélanger la farine, le sucre, les oeufs et le "
+                + "beurre...");
+                gateau.setPate("sucrée");
+                System.out.println("Ajouter la garniture aux "
+                        + typeTarte + "...");
+                gateau.setRemplissage(typeTarte);
+                System.out.println("Cuire pendant 20 minutes...");
+                gateau.cuire();
+                for (Ingredient ingredient: new ArrayList<>(ingredients)) {
+                    System.out.println("Ajouter des " + ingredient +
+                        " en décoration...");
+                    gateau.addIngredient(ingredient);
+                }
                 break;
             case 3:
                 String typeRemplissage = "";
@@ -122,14 +144,28 @@ public class Boulangerie {
                     "Sans sucre");
                 if (choix == 1)
                     ingredients.add(new Ingredient("sucre"));
-                gateauBuilder = new PanDeMuertoBuilder(
-                        typeRemplissage, ingredients);
+                gateau = Factory.getPrototype("Pan de muerto",
+                        ingredients);
+                System.out.println("Mélanger la farine, la levure et le sucre...");
+                gateau.setPate("duveteux");
+                System.out.println("Ajouter la garniture au " + typeRemplissage
+                + "...");
+                gateau.setRemplissage(typeRemplissage);
+                System.out.println("Cuire 15 minutes...");
+                gateau.cuire();
+                for (Ingredient ingredient: new ArrayList<>(ingredients)) {
+                    System.out.println("Ajouter " + ingredient +
+                            " en décoration...");
+                    gateau.addIngredient(ingredient);
+                }
                 break;
         }
         
-        patissier.setGateauBuilder(gateauBuilder);
+        gateauxDao.save(gateau);
+        
+        /*patissier.setGateauBuilder(gateauBuilder);
         patissier.preparerGateau();
-        patissier.getGateau();
+        patissier.getGateau(); */
         
         try {
             buff.close();

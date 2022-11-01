@@ -16,40 +16,36 @@
  */
 package boulangerie.gateaux;
 
-/* import boulangerie.builders.GateauBuilder; */
-/* import boulangerie.patissier.Patissier; */
+import boulangerie.gateaux.Gateau;
+import boulangerie.ingredients.Ingredient;
+import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
-public abstract class Gateau {
-    private final String nom;
-    private String typePate;
-    private String typeRemplissage;
-    private boolean isCuit;
+public class ChouxALaCreme extends Gateau {
     
-    public Gateau() {
-        this.nom = "";
+    String typeCreme;
+    ArrayList<Ingredient> ingredients;
+    
+    public ChouxALaCreme() {
+        
     }
     
-    public Gateau(String nom) {
-        this.nom = nom;
+    public ChouxALaCreme(String typeCreme,
+            ArrayList<Ingredient> ingredients) {
+        this.typeCreme = typeCreme;
+        this.ingredients = ingredients;
     }
     
-    public void setPate(String typePate) {
-        this.typePate = typePate;
-    }
-    
-    public void setRemplissage(String typeRemplissage) {
-        this.typeRemplissage = typeRemplissage;
-    }
-    
-    public void cuire() {
-        this.isCuit = true;
+    public void setTypeCreme(String typeCreme) {
+        this.typeCreme = typeCreme;
     }
     
     @Override
-    abstract public Gateau clone();
-    
+    public Gateau clone() {
+        return new ChouxALaCreme();
+    }
+
 }
