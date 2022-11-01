@@ -39,6 +39,7 @@ public class PanDeMuertoBuilder extends GateauBuilder {
     @Override
     public void createNewGateau()  {
         gateau = new IngredientsDecorator(new Gateau("Pan de muerto"));
+        gateau.setNom("Pan de muerto");
     }
 
     @Override

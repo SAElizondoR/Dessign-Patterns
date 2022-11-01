@@ -39,6 +39,7 @@ public class ChouxALaCremeBuilder extends GateauBuilder {
     @Override
     public void createNewGateau()  {
         gateau = new IngredientsDecorator(new Gateau("Choux à la crème"));
+        gateau.setNom("Choux à la crème");
     }
 
     @Override

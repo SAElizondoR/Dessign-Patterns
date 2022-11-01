@@ -17,7 +17,6 @@
 package boulangerie.dao;
 
 import boulangerie.gateaux.Gateau;
-import boulangerie.ingredients.Ingredient;
 import java.util.ArrayList;
 
 /**
@@ -37,16 +36,37 @@ public class GateauxDao {
         return false;
         // return gateaux.contains(new Gateau(nom));
        }
+    
+    public Gateau getGateaux(int number) {
+        return gateaux.get(number);
+    }
 
     public void save(Gateau obj) {
         gateaux.add(obj);
     }
 
-    public void update(Gateau obj, ArrayList<Ingredient> ingredient) {
-        
-    }
-
     public void delete(Gateau obj) {
         gateaux.remove(obj);
     }
+    
+    public void show() {
+        System.out.println();
+        System.out.println("GATEAUX DISPONIBLES");
+        for (Gateau gat: gateaux) {
+            System.out.println(gat.toString());
+        }
+    }
+    
+    public int size() {
+        return gateaux.size();
+    }
+    
+    public String[] getTypes() {
+        ArrayList<String> types = new ArrayList<>();
+        for (Gateau gat: gateaux) {
+            types.add(gat.getNom());
+        }
+        return types.toArray(new String[0]);
+    }
+    
 }

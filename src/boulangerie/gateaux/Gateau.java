@@ -18,13 +18,14 @@ package boulangerie.gateaux;
 
 import boulangerie.builders.GateauBuilder;
 import boulangerie.patissier.Patissier;
+import java.util.ArrayList;
 
 /**
  *
  * @author sergio
  */
 public class Gateau {
-    private final String nom;
+    private String nom;
     private String typePate;
     private String typeRemplissage;
     private boolean isCuit;
@@ -39,6 +40,14 @@ public class Gateau {
         this.nom = nom;
     }
     
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+    
+    public String getNom() {
+        return nom;
+    }
+    
     public void setPate(String typePate) {
         this.typePate = typePate;
     }
@@ -51,6 +60,10 @@ public class Gateau {
         this.isCuit = true;
     }
     
-
+    @Override
+    public String toString() {
+        return "Type pâte: " + typePate +
+                "\tType remplissage: " + typeRemplissage;
+    }
     
 }

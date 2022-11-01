@@ -22,6 +22,7 @@ import boulangerie.builders.GateauBuilder;
 import boulangerie.builders.PanDeMuertoBuilder;
 import boulangerie.builders.TarteBuilder;
 import boulangerie.dao.GateauxDao;
+import boulangerie.gestion.Vendeur;
 import boulangerie.ingredients.Ingredient;
 import boulangerie.patissier.Patissier;
 import java.io.BufferedReader;
@@ -45,91 +46,42 @@ public class Boulangerie {
         
         BufferedReader buff = new BufferedReader(
                 new InputStreamReader(System.in));
+        GateauxDao gateauxDao = new GateauxDao();
         ArrayList<Ingredient> ingredients = new ArrayList<>();
-        GateauxDao gateauxDAO = new GateauxDao();
-        GateauBuilder gateauBuilder = null;
-        Patissier patissier = new Patissier();
-        int choix = choisirOption(buff, "Choux à la crème", "Tarte",
-                "Pan de muerto");
-        switch (choix) {
-            case 1:
-                String typeCreme = "";
-                choix = choisirOption(buff, "Crème vanille", "Crème chocolat");
-                switch (choix) {
-                    case 1:
-                        typeCreme = "vanille";
-                        break;
-                    case 2:
-                        typeCreme = "chocolat";
-                        break;
-                }
-                choix = choisirOption(buff, "Avec chantilly", "Sans chantilly");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("chantilly"));
-                choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("noisettes"));
-                choix = choisirOption(buff, "Avec amandes grillées",
-                    "Sans amandes grillées");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new ChouxALaCremeBuilder(
-                        typeCreme, ingredients);
-                break;
-            case 2:
-                String typeTarte = "";
-                choix = choisirOption(buff, "Aux pommes", "Aux abricots");
-                switch (choix) {
-                    case 1:
-                        typeTarte = "pommes";
-                        break;
-                    case 2:
-                        typeTarte = "abricots";
-                        break;
-                }
-                choix = choisirOption(buff, "Avec meringue sur les fruits",
-                    "Sans meringue sur les fruits");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("meringue"));
-                choix = choisirOption(buff, "Avec noisettes", "Sans noisettes");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("noisettes"));
-                choix = choisirOption(buff, "Avec amandes grillées",
-                    "Sans amandes grillées");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new TarteBuilder(typeTarte, ingredients);
-                break;
-            case 3:
-                String typeRemplissage = "";
-                choix = choisirOption(buff, "Chocolat", "Massepain");
-                switch (choix) {
-                    case 1:
-                        typeRemplissage = "chocolat";
-                        break;
-                    case 2:
-                        typeRemplissage = "massepain";
-                        break;
-                }
-                choix = choisirOption(buff, "Avec canelle", "Sans canelle");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("canelle"));
-                choix = choisirOption(buff, "Avec pain de vesou",
-                        "Sans pain de vesou");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("pain de vesou"));
-                choix = choisirOption(buff, "Avec sucre",
-                    "Sans sucre");
-                if (choix == 1)
-                    ingredients.add(new Ingredient("sucre"));
-                gateauBuilder = new PanDeMuertoBuilder(
-                        typeRemplissage, ingredients);
-                break;
-        }
+        Patissier patissier = new Patissier(buff, gateauxDao);
+        ingredients.add(new Ingredient("chantilly"));
+        GateauBuilder gateauBuilder = new ChouxALaCremeBuilder(
+                        "vanille", ingredients);
+        buildGateau(buff, gateauBuilder, gateauxDao, patissier);
+        gateauBuilder = new TarteBuilder(
+                        "pommes", ingredients);
+        buildGateau(buff, gateauBuilder, gateauxDao, patissier);
+        gateauBuilder = new PanDeMuertoBuilder(
+                        "massepain", ingredients);
+        buildGateau(buff, gateauBuilder, gateauxDao, patissier);
+        ingredients.add(new Ingredient("sucre"));
+        gateauBuilder = new PanDeMuertoBuilder(
+                        "massepain", ingredients);
+        buildGateau(buff, gateauBuilder, gateauxDao, patissier);
+        gateauxDao.show();
         
-        patissier.setGateauBuilder(gateauBuilder);
-        patissier.preparerGateau();
-        patissier.getGateau();
+        Vendeur vendeur =
+                new Vendeur(gateauxDao.size());
+        vendeur.addObserver(patissier);
+        int choix;
+        do {
+            choix = choisirOption(buff, "Vendre", "Quitter");
+            switch(choix) {
+                case 1:
+                    vendre(buff, gateauxDao, vendeur);
+                    break;
+            }
+        } while (choix != 2);
+        
+        
+        
+        
+        /*  */
         
         try {
             buff.close();
@@ -137,6 +89,22 @@ public class Boulangerie {
             Logger.getLogger(Boulangerie.class.getName())
                     .log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public static void buildGateau(BufferedReader buff,
+            GateauBuilder builder, GateauxDao gateauxDao, Patissier patissier) {
+        GateauBuilder gateauBuilder = builder;
+        patissier.setGateauBuilder(gateauBuilder);
+        patissier.preparerGateau();
+        gateauxDao.save(patissier.getGateau());
+    }
+    
+    public static void vendre(BufferedReader buff, GateauxDao gateauxDao,
+            Vendeur vendeur) {
+        String[] types = gateauxDao.getTypes();
+        int choix = choisirOption(buff, types);
+        gateauxDao.delete(gateauxDao.getGateaux(choix));
+        vendeur.vendre();
     }
     
     public static int choisirOption(BufferedReader buff, String... options) {

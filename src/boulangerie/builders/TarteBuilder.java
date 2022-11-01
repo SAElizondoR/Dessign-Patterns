@@ -38,6 +38,7 @@ public class TarteBuilder extends GateauBuilder {
     @Override
     public void createNewGateau()  {
         gateau = new IngredientsDecorator(new Gateau("Tarte"));
+        gateau.setNom("Tarte");
     }
 
     @Override
