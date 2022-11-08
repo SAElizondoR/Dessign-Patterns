@@ -27,12 +27,14 @@ import boulangerie.gateaux.IngredientsDecorator;
  */
 public class Patissier {
     
-    public void preparerGateau(Gateau gateau, Ingredients ingredients) {
+    public Gateau preparerGateau(Gateau gateau, Ingredients ingredients) {
         Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
         if (decoratedGateau.preparer() == 0)
             System.out.println("C'est fait!");
         else
             System.out.println("Erreur lors de la preparation.");
+        
+        return decoratedGateau;
     }
     
 }
