@@ -20,7 +20,7 @@ package boulangerie.gateaux;
  *
  * @author sergio
  */
-abstract class GateauDecorator implements Gateau {
+abstract class GateauDecorator extends Gateau {
     protected Gateau decoratedGateau;
     
     public GateauDecorator(Gateau decoratedGateau) {
