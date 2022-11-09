@@ -21,5 +21,5 @@ package boulangerie.gateaux;
  * @author sergio
  */
 public interface Aliment {
-    public int preparer();
+    public void preparer();
 }

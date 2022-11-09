@@ -22,24 +22,20 @@ import java.util.ArrayList;
  *
  * @author sergio
  */
-abstract class Gateau implements Aliment {
+abstract public class Gateau implements Aliment {
     
-    protected final ArrayList<Aliment> ingredients = new ArrayList<>();
+    private final ArrayList<Aliment> ingredients = new ArrayList<>();
     
     public void add(Aliment aliment) {
         ingredients.add(aliment);
     }
     
     @Override
-    public int preparer() {
-        System.out.println();
-        System.out.println();
+    public void preparer() {
         System.out.println("PREPARATION");
         
         for (Aliment aliment : ingredients)
             aliment.preparer();
-        
-        return 0;
     }
     
 }

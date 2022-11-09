@@ -28,9 +28,8 @@ public class Ingredient implements Aliment {
     }
 
     @Override
-    public int preparer() {
+    public void preparer() {
         System.out.println(nom + " est prêt...");
-        return 0;
     }
     
 }
