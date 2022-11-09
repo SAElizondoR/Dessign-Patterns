@@ -16,24 +16,15 @@
  */
 package boulangerie.gateaux;
 
-import boulangerie.builders.GateauBuilder;
-import boulangerie.patissier.Patissier;
-
 /**
  *
  * @author sergio
  */
 public class Gateau {
-    private final String nom;
+    protected final String nom;
     private String typePate;
     private String typeRemplissage;
     private boolean isCuit;
-    private GateauBuilder gateauBuilder;
-    public Patissier patissier;
-    
-    public Gateau() {
-        this.nom = "";
-    }
     
     public Gateau(String nom) {
         this.nom = nom;
@@ -51,6 +42,11 @@ public class Gateau {
         this.isCuit = true;
     }
     
-
+    @Override
+    public String toString() {
+        return "Nom: " + this.nom + "\nPâte: " + this.typePate +
+                "\nRemplissage: " + this.typeRemplissage +
+                (isCuit ? "\nFinished" : "\nPreparing...");
+    }
     
 }

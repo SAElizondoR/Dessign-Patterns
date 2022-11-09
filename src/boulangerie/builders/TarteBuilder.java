@@ -27,8 +27,8 @@ import java.util.ArrayList;
  */
 public class TarteBuilder extends GateauBuilder {
     
-    String type;
-    ArrayList<Ingredient> ingredients;
+    private final String type;
+    private final ArrayList<Ingredient> ingredients;
     
     public TarteBuilder(String type, ArrayList<Ingredient> ingredients) {
         this.type = type;

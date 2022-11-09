@@ -27,8 +27,8 @@ import java.util.ArrayList;
  */
 public class PanDeMuertoBuilder extends GateauBuilder {
     
-    String typeRemplissage;
-    ArrayList<Ingredient> ingredients;
+    private final String typeRemplissage;
+    private final ArrayList<Ingredient> ingredients;
     
     public PanDeMuertoBuilder(String typeRemplissage,
             ArrayList<Ingredient> ingredients) {

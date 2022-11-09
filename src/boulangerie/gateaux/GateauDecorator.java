@@ -24,6 +24,7 @@ public abstract class GateauDecorator extends Gateau {
     protected Gateau decoratedGateau;
     
     public GateauDecorator(Gateau decoratedGateau) {
+        super(decoratedGateau.nom);
         this.decoratedGateau = decoratedGateau;
     }
     

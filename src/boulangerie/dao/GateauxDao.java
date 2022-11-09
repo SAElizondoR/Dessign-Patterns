@@ -17,7 +17,6 @@
 package boulangerie.dao;
 
 import boulangerie.gateaux.Gateau;
-import boulangerie.ingredients.Ingredient;
 import java.util.ArrayList;
 
 /**
@@ -25,25 +24,21 @@ import java.util.ArrayList;
  * @author sergio
  */
 public class GateauxDao {
-    ArrayList<Gateau> gateaux;
+    private final ArrayList<Gateau> gateaux;
     
     public GateauxDao() {
         gateaux = new ArrayList<>();
-        // gateaux.add(new Gateau("Choux à la crème"));
-        // gateaux.add(new Gateau("Tarte"));
     }
     
-    public boolean getGateau(String nom) {
-        return false;
-        // return gateaux.contains(new Gateau(nom));
+    public void afficherGateaux() {
+        System.out.println("Historique de gâteaux:");
+        for (Gateau gateau: gateaux)
+            System.out.println(gateau.toString());
+        System.out.println();
        }
 
     public void save(Gateau obj) {
         gateaux.add(obj);
-    }
-
-    public void update(Gateau obj, ArrayList<Ingredient> ingredient) {
-        
     }
 
     public void delete(Gateau obj) {

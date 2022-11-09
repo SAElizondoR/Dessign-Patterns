@@ -27,8 +27,8 @@ import java.util.ArrayList;
  */
 public class ChouxALaCremeBuilder extends GateauBuilder {
     
-    String typeCreme;
-    ArrayList<Ingredient> ingredients;
+    private final String typeCreme;
+    private final ArrayList<Ingredient> ingredients;
     
     public ChouxALaCremeBuilder(String typeCreme,
             ArrayList<Ingredient> ingredients) {

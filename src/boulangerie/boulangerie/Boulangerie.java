@@ -129,7 +129,9 @@ public class Boulangerie {
         
         patissier.setGateauBuilder(gateauBuilder);
         patissier.preparerGateau();
-        patissier.getGateau();
+        gateauxDAO.save(patissier.getGateau());
+        System.out.println();
+        gateauxDAO.afficherGateaux();
         
         try {
             buff.close();
