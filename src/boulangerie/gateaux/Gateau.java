@@ -20,14 +20,14 @@ package boulangerie.gateaux;
  *
  * @author sergio
  */
-public class Gateau {
-    protected final String nom;
+abstract public class Gateau {
+    protected final String complement;
     private String typePate;
     private String typeRemplissage;
     private boolean isCuit;
     
-    public Gateau(String nom) {
-        this.nom = nom;
+    public Gateau(String complement) {
+        this.complement = complement;
     }
     
     public void setPate(String typePate) {
@@ -44,9 +44,11 @@ public class Gateau {
     
     @Override
     public String toString() {
-        return "Nom: " + this.nom + "\nPâte: " + this.typePate +
+        return "\nPâte: " + this.typePate +
                 "\nRemplissage: " + this.typeRemplissage +
                 (isCuit ? "\nFinished" : "\nPreparing...");
     }
+    
+    abstract public void preparer();
     
 }

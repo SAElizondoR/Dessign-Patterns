@@ -15,24 +15,33 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package boulangerie.builders;
-
-import boulangerie.gateaux.Gateau;
+package boulangerie.gateaux;
 
 /**
  *
  * @author selizondorod
  */
-abstract public class GateauBuilder {
-    protected Gateau gateau;
+public class ChouxALaCreme extends Gateau {
     
-    public Gateau getGateau() {
-        return gateau;
+    public ChouxALaCreme(String typeCreme) {
+        super(typeCreme);
+    }
+
+    @Override
+    public void preparer() {
+        System.out.println("Mélanger la farine avec la beurre jusqu'à ce "
+                + "qu'il forme une pâte...");
+        setPate("choux");
+        System.out.println("Ajouter la garniture à la crème " + complement
+                + "...");
+        setRemplissage(complement);
+        System.out.println("Cuire 12 minutes...");
+        cuire();
     }
     
-    public abstract void createNewGateau();
-    public abstract void buildPate();
-    public abstract void remplir();
-    public abstract void cuire();
-    public abstract void decorer();
+    @Override
+    public String toString() {
+        return "\nType: Choux à la crème\nType crème: " + complement + "\n" +
+                super.toString();
+    }
 }

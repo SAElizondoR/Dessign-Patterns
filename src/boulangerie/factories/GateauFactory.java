@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 sergio
+ * Copyright (C) 2022 selizondorod
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,18 +14,25 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package boulangerie.gateaux;
+
+package boulangerie.factories;
+
+import boulangerie.gateaux.Gateau;
 
 /**
  *
- * @author sergio
+ * @author selizondorod
  */
-public abstract class GateauDecorator extends Gateau {
-    protected Gateau decoratedGateau;
-    
-    public GateauDecorator(Gateau decoratedGateau) {
-        super(decoratedGateau.complement);
-        this.decoratedGateau = decoratedGateau;
+abstract public class GateauFactory {
+    public static GateauFactory getFactory(String typeGateau) {
+        if (typeGateau.equals("choux"))
+            return new ChouxALaCremeFactory();
+        if (typeGateau.equals("tarte"))
+            return new TarteFactory();
+        if (typeGateau.equals("pan de muerto"))
+            return new PanDeMuertoFactory();
+        return null;
     }
     
+    public abstract Gateau createGateau(String complement);
 }

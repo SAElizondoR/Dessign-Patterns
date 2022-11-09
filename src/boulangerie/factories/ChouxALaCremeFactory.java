@@ -14,18 +14,20 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package boulangerie.gateaux;
+package boulangerie.factories;
+
+import boulangerie.gateaux.ChouxALaCreme;
+import boulangerie.gateaux.Gateau;
 
 /**
  *
  * @author sergio
  */
-public abstract class GateauDecorator extends Gateau {
-    protected Gateau decoratedGateau;
+public class ChouxALaCremeFactory extends GateauFactory {
     
-    public GateauDecorator(Gateau decoratedGateau) {
-        super(decoratedGateau.complement);
-        this.decoratedGateau = decoratedGateau;
+    @Override
+    public Gateau createGateau(String complement)  {
+        return new ChouxALaCreme(complement);
     }
-    
+
 }

@@ -27,9 +27,10 @@ import java.util.ArrayList;
 public class IngredientsDecorator extends GateauDecorator {
     protected final ArrayList<Ingredient> ingredients;
     
-    public IngredientsDecorator(Gateau decoratedGateau) {
+    public IngredientsDecorator(Gateau decoratedGateau,
+            ArrayList<Ingredient> ingredients) {
         super(decoratedGateau);
-        ingredients = new ArrayList<>();
+        this.ingredients = ingredients;
     }
     
     public void addIngredient(Ingredient ingredient) {
@@ -38,12 +39,21 @@ public class IngredientsDecorator extends GateauDecorator {
     
     @Override
     public String toString() {
-        String str = super.toString();
+        String str = decoratedGateau.toString();
         str += "\nIngredients:";
         for (Ingredient ingredient: ingredients) {
             str += "\n" + ingredient;
         }
         return str;
+    }
+
+    @Override
+    public void preparer() {
+        decoratedGateau.preparer();
+        for (Ingredient ingredient: ingredients) {
+            System.out.println("Ajouter " + ingredient +
+                    " en décoration...");
+        }
     }
     
 }

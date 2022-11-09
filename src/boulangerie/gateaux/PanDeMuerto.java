@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2022 sergio
+ * Copyright (C) 2022 selizondorod
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -14,18 +14,33 @@
  * You should have received a copy of the GNU General Public License
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
+
 package boulangerie.gateaux;
 
 /**
  *
- * @author sergio
+ * @author selizondorod
  */
-public abstract class GateauDecorator extends Gateau {
-    protected Gateau decoratedGateau;
+public class PanDeMuerto extends Gateau {
     
-    public GateauDecorator(Gateau decoratedGateau) {
-        super(decoratedGateau.complement);
-        this.decoratedGateau = decoratedGateau;
+    public PanDeMuerto(String type) {
+        super(type);
     }
     
+    @Override
+    public void preparer() {
+        System.out.println("Mélanger la farine, la levure et le sucre...");
+        setPate("duveteux");
+        System.out.println("Ajouter la garniture au " + complement
+                + "...");
+        setRemplissage(complement);
+        System.out.println("Cuire 15 minutes...");
+        cuire();
+    }
+    
+    @Override
+    public String toString() {
+        return "\nType: Pan de muerto\nType remplissage: " + complement + "\n" +
+                super.toString();
+    }
 }

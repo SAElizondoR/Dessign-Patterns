@@ -17,11 +17,8 @@
 
 package boulangerie.boulangerie;
 
-import boulangerie.builders.ChouxALaCremeBuilder;
-import boulangerie.builders.GateauBuilder;
-import boulangerie.builders.PanDeMuertoBuilder;
-import boulangerie.builders.TarteBuilder;
 import boulangerie.dao.GateauxDao;
+import boulangerie.gateaux.Gateau;
 import boulangerie.ingredients.Ingredient;
 import boulangerie.patissier.Patissier;
 import java.io.BufferedReader;
@@ -47,20 +44,21 @@ public class Boulangerie {
                 new InputStreamReader(System.in));
         ArrayList<Ingredient> ingredients = new ArrayList<>();
         GateauxDao gateauxDAO = new GateauxDao();
-        GateauBuilder gateauBuilder = null;
         Patissier patissier = new Patissier();
+        String typeGateau = null;
+        String complementGateau = null;
         int choix = choisirOption(buff, "Choux à la crème", "Tarte",
                 "Pan de muerto");
         switch (choix) {
             case 1:
-                String typeCreme = "";
+                typeGateau = "choux";
                 choix = choisirOption(buff, "Crème vanille", "Crème chocolat");
                 switch (choix) {
                     case 1:
-                        typeCreme = "vanille";
+                        complementGateau = "vanille";
                         break;
                     case 2:
-                        typeCreme = "chocolat";
+                        complementGateau = "chocolat";
                         break;
                 }
                 choix = choisirOption(buff, "Avec chantilly", "Sans chantilly");
@@ -73,18 +71,16 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new ChouxALaCremeBuilder(
-                        typeCreme, ingredients);
                 break;
             case 2:
-                String typeTarte = "";
+                typeGateau = "tarte";
                 choix = choisirOption(buff, "Aux pommes", "Aux abricots");
                 switch (choix) {
                     case 1:
-                        typeTarte = "pommes";
+                        complementGateau = "pommes";
                         break;
                     case 2:
-                        typeTarte = "abricots";
+                        complementGateau = "abricots";
                         break;
                 }
                 choix = choisirOption(buff, "Avec meringue sur les fruits",
@@ -98,17 +94,16 @@ public class Boulangerie {
                     "Sans amandes grillées");
                 if (choix == 1)
                     ingredients.add(new Ingredient("amandes grillées"));
-                gateauBuilder = new TarteBuilder(typeTarte, ingredients);
                 break;
             case 3:
-                String typeRemplissage = "";
+                typeGateau = "pan de muerto";
                 choix = choisirOption(buff, "Chocolat", "Massepain");
                 switch (choix) {
                     case 1:
-                        typeRemplissage = "chocolat";
+                        complementGateau = "chocolat";
                         break;
                     case 2:
-                        typeRemplissage = "massepain";
+                        complementGateau = "massepain";
                         break;
                 }
                 choix = choisirOption(buff, "Avec canelle", "Sans canelle");
@@ -122,14 +117,12 @@ public class Boulangerie {
                     "Sans sucre");
                 if (choix == 1)
                     ingredients.add(new Ingredient("sucre"));
-                gateauBuilder = new PanDeMuertoBuilder(
-                        typeRemplissage, ingredients);
                 break;
         }
         
-        patissier.setGateauBuilder(gateauBuilder);
-        patissier.preparerGateau();
-        gateauxDAO.save(patissier.getGateau());
+        Gateau g = patissier.preparerGateau(typeGateau,
+                complementGateau, ingredients);
+        gateauxDAO.save(g);
         System.out.println();
         gateauxDAO.afficherGateaux();
         

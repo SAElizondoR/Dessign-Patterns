@@ -18,7 +18,10 @@
 package boulangerie.patissier;
 
 import boulangerie.gateaux.Gateau;
-import boulangerie.builders.GateauBuilder;
+import boulangerie.factories.GateauFactory;
+import boulangerie.ingredients.Ingredient;
+import boulangerie.ingredients.IngredientsDecorator;
+import java.util.ArrayList;
 
 /**
  *
@@ -26,27 +29,15 @@ import boulangerie.builders.GateauBuilder;
  */
 public class Patissier {
     
-    private GateauBuilder gateauBuilder;
-    
-    public void setGateauBuilder(GateauBuilder gateauBuilder) {
-        this.gateauBuilder = gateauBuilder;
-    }
-    
-    public Gateau getGateau() {
-        return gateauBuilder.getGateau();
-    }
-    
-    public void preparerGateau() {
-        System.out.println("");
-        System.out.println("PRÉPARATION");
-        System.out.println("");
-        gateauBuilder.createNewGateau();
-        gateauBuilder.buildPate();
-        gateauBuilder.remplir();
-        gateauBuilder.cuire();
-        gateauBuilder.decorer();
-        
+    public Gateau preparerGateau(String typeGateau, String complement,
+            ArrayList<Ingredient> ingredients) {
+        GateauFactory factory = GateauFactory.getFactory(typeGateau);
+        Gateau decoratedGateau = new IngredientsDecorator(
+                factory.createGateau(complement), ingredients);
+        decoratedGateau.preparer();
         System.out.println("C'est fait!");
+        
+        return decoratedGateau;
     }
     
 }
