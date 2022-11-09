@@ -29,10 +29,8 @@ public class Patissier {
     
     public Gateau preparerGateau(Gateau gateau, Ingredients ingredients) {
         Gateau decoratedGateau = new IngredientsDecorator(gateau, ingredients);
-        if (decoratedGateau.preparer() == 0)
-            System.out.println("C'est fait!");
-        else
-            System.out.println("Erreur lors de la preparation.");
+        decoratedGateau.preparer();
+        System.out.println("C'est fait!");
         
         return decoratedGateau;
     }

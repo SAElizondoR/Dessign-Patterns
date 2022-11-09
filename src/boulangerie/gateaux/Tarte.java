@@ -29,11 +29,10 @@ public class Tarte extends Gateau {
     }
     
     @Override
-    public int preparer() {
+    public void preparer() {
         super.preparer();
         System.out.println("Ajouter les " + type + "...");
-        System.out.println("Préparer la pâte");
+        System.out.println("Préparer la pâte...");
         System.out.println("Cuire...");
-        return 0;
     }
 }

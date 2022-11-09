@@ -30,11 +30,10 @@ public class IngredientsDecorator extends GateauDecorator {
     }
 
     @Override
-    public int preparer() {
+    public void preparer() {
         decoratedGateau.preparer();
         for (String ingredient: ingredients)
             System.out.println("Ajouter " + ingredient + "...");
-        return 0;
     }
     
 }

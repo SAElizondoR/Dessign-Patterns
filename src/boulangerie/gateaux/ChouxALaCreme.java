@@ -29,11 +29,10 @@ public class ChouxALaCreme extends Gateau {
     }
 
     @Override
-    public int preparer() {
+    public void preparer() {
         super.preparer();
         System.out.println("Ajouter la crème " + typeCreme + "...");
-        System.out.println("Mélanger les ingrédients...");
+        System.out.println("Mélanger...");
         System.out.println("Cuire...");
-        return 0;
     }
 }

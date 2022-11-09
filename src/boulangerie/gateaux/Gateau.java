@@ -21,11 +21,7 @@ package boulangerie.gateaux;
  * @author sergio
  */
 public abstract class Gateau {
-    public int preparer() {
-        System.out.println();
-        System.out.println();
+    public void preparer() {
         System.out.println("PREPARATION");
-        
-        return 0;
     }
 }
