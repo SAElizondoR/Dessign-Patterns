@@ -32,6 +32,7 @@ abstract public class Gateau implements Aliment {
     
     @Override
     public void preparer() {
+        System.out.println();
         System.out.println("PREPARATION");
         
         for (Aliment aliment : ingredients)
