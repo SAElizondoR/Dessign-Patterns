@@ -46,7 +46,7 @@ public class Gateau {
     public String toString() {
         return "Nom: " + this.nom + "\nPâte: " + this.typePate +
                 "\nRemplissage: " + this.typeRemplissage +
-                (isCuit ? "\nFinished" : "\nPreparing...");
+                (isCuit ? "\nCuit" : "\nEn cours de cuisson...");
     }
     
 }
