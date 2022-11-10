@@ -135,6 +135,7 @@ public class Boulangerie {
     }
     
     public static int choisirOption(BufferedReader buff, String... options) {
+        System.out.println();
         System.out.println("Quel est votre choix ?");
         int cont = 0;
         for (String option : options) {

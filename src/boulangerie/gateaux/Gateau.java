@@ -44,9 +44,9 @@ abstract public class Gateau {
     
     @Override
     public String toString() {
-        return "\nPâte: " + this.typePate +
+        return "Pâte: " + this.typePate +
                 "\nRemplissage: " + this.typeRemplissage +
-                (isCuit ? "\nFinished" : "\nPreparing...");
+                (isCuit ? "\nCuit" : "\nEn cours de cuisson...");
     }
     
     abstract public void preparer();

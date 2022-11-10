@@ -29,6 +29,8 @@ public class PanDeMuerto extends Gateau {
     
     @Override
     public void preparer() {
+        System.out.println();
+        System.out.println("PREPARATION");
         System.out.println("Mélanger la farine, la levure et le sucre...");
         setPate("duveteux");
         System.out.println("Ajouter la garniture au " + complement
@@ -40,7 +42,7 @@ public class PanDeMuerto extends Gateau {
     
     @Override
     public String toString() {
-        return "\nType: Pan de muerto\nType remplissage: " + complement + "\n" +
+        return "Type: Pan de muerto\nType remplissage: " + complement + "\n" +
                 super.toString();
     }
 }

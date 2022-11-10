@@ -29,6 +29,8 @@ public class Tarte extends Gateau {
     
     @Override
     public void preparer() {
+        System.out.println();
+        System.out.println("PREPARATION");
         System.out.println("Mélanger la farine, le sucre, les oeufs et le "
                 + "beurre...");
         setPate("sucrée");
@@ -40,7 +42,7 @@ public class Tarte extends Gateau {
     
     @Override
     public String toString() {
-        return "\nType: Tarte\nType garniture: " + complement + "\n" +
+        return "Type: Tarte\nType garniture: " + complement + "\n" +
                 super.toString();
     }
 }

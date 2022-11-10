@@ -29,6 +29,8 @@ public class ChouxALaCreme extends Gateau {
 
     @Override
     public void preparer() {
+        System.out.println();
+        System.out.println("PREPARATION");
         System.out.println("Mélanger la farine avec la beurre jusqu'à ce "
                 + "qu'il forme une pâte...");
         setPate("choux");
@@ -41,7 +43,7 @@ public class ChouxALaCreme extends Gateau {
     
     @Override
     public String toString() {
-        return "\nType: Choux à la crème\nType crème: " + complement + "\n" +
+        return "Type: Choux à la crème\nType crème: " + complement + "\n" +
                 super.toString();
     }
 }
