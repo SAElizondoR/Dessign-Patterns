@@ -39,7 +39,6 @@ public class Patissier {
     public void preparerGateau() {
         System.out.println();
         System.out.println("PRÉPARATION");
-        System.out.println();
         gateauBuilder.createNewGateau();
         gateauBuilder.buildPate();
         gateauBuilder.remplir();

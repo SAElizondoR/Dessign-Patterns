@@ -46,6 +46,10 @@ public class Vendeur {
         notifyObservers();
     }
     
+    public void ajouterGateau() {
+        boulangerieSize++;
+    }
+    
     private void notifyObservers() {
        for (GateauObserver obs: observers) {
             obs.update(boulangerieSize);

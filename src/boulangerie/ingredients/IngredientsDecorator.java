@@ -39,9 +39,9 @@ public class IngredientsDecorator extends GateauDecorator {
     @Override
     public String toString() {
         String str = super.toString();
-        str += "\nIngredients:";
+        str += "\nIngredients: ";
         for (Ingredient ingredient: ingredients) {
-            str += "\n" + ingredient;
+            str += ingredient + ", ";
         }
         return str;
     }

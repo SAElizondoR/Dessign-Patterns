@@ -39,6 +39,7 @@ public class GestionBoulangerie implements GateauObserver {
                 new InputStreamReader(System.in));
     private final GateauxDao gateauxDao = new GateauxDao();
     private final Patissier patissier = new Patissier();
+    private Vendeur vendeur;
     
     public void run() {
         ArrayList<Ingredient> ingredients = new ArrayList<>();
@@ -61,7 +62,7 @@ public class GestionBoulangerie implements GateauObserver {
         buildGateau(gateauBuilder);
         gateauxDao.show();
         
-        Vendeur vendeur =
+        vendeur =
                 new Vendeur(gateauxDao.size());
         vendeur.addObserver(this);
         int choix;
@@ -69,7 +70,7 @@ public class GestionBoulangerie implements GateauObserver {
             choix = choisirOption("Vendre", "Quitter");
             switch(choix) {
                 case 1:
-                    vendre(vendeur);
+                    vendre();
                     break;
             }
         } while (choix != 2);
@@ -88,7 +89,7 @@ public class GestionBoulangerie implements GateauObserver {
         gateauxDao.save(patissier.getGateau());
     }
     
-    private void vendre(Vendeur vendeur) {
+    private void vendre() {
         String[] types = gateauxDao.getTypes();
         int choix = choisirOption(types);
         gateauxDao.delete(gateauxDao.getGateaux(choix));
@@ -96,6 +97,7 @@ public class GestionBoulangerie implements GateauObserver {
     }
     
     private int choisirOption(String... options) {
+        System.out.println();
         System.out.println("Quel est votre choix ?");
         int cont = 0;
         for (String option : options) {
@@ -207,6 +209,7 @@ public class GestionBoulangerie implements GateauObserver {
         patissier.setGateauBuilder(gateauBuilder);
         patissier.preparerGateau();
         gateauxDao.save(patissier.getGateau());
+        vendeur.ajouterGateau();
     }
     
 }
