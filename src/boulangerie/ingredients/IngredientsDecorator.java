@@ -29,11 +29,21 @@ public class IngredientsDecorator extends GateauDecorator {
     
     public IngredientsDecorator(Gateau decoratedGateau) {
         super(decoratedGateau);
-        ingredients = new ArrayList();
+        ingredients = new ArrayList<>();
     }
     
     public void addIngredient(Ingredient ingredient) {
         ingredients.add(ingredient);
+    }
+    
+    @Override
+    public String toString() {
+        String str = super.toString();
+        str += "\nIngredients:";
+        for (Ingredient ingredient: ingredients) {
+            str += "\n" + ingredient;
+        }
+        return str;
     }
     
 }

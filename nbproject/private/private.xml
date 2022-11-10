@@ -6,11 +6,12 @@
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/patissier/Patissier.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/dao/GateauxDao.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gateaux/Gateau.java</file>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/builders/ChouxALaCremeBuilder.java</file>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/builders/TarteBuilder.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/builders/GateauBuilder.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gateaux/GateauDecorator.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gestion/Vendeur.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/gestion/GateauObserver.java</file>
-            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/boulangerie/Boulangerie.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/ingredients/IngredientsDecorator.java</file>
+            <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/app/App.java</file>
             <file>file:/home/sergio/Documentos/univ/7mo/enfoque_obj/Boulangerie/src/boulangerie/builders/PanDeMuertoBuilder.java</file>
         </group>
     </open-files>

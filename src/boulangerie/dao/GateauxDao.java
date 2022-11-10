@@ -28,17 +28,10 @@ public class GateauxDao {
     
     public GateauxDao() {
         gateaux = new ArrayList<>();
-        // gateaux.add(new Gateau("Choux à la crème"));
-        // gateaux.add(new Gateau("Tarte"));
     }
     
-    public boolean getGateau(String nom) {
-        return false;
-        // return gateaux.contains(new Gateau(nom));
-       }
-    
     public Gateau getGateaux(int number) {
-        return gateaux.get(number);
+        return gateaux.get(number - 1);
     }
 
     public void save(Gateau obj) {
@@ -54,6 +47,7 @@ public class GateauxDao {
         System.out.println("GATEAUX DISPONIBLES");
         for (Gateau gat: gateaux) {
             System.out.println(gat.toString());
+            System.out.println();
         }
     }
     
